@@ -1,58 +1,105 @@
 html, body {
   height: 100%;
-  font-family: 'Open Sans', sans-serif
+  font-family: "Courier New", Courier, monospace;
 }
 
 body {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-center;
-  flex-direction: column;
+  padding: 1em 1em;
+  font-weight: bold;
 }
 
-#message, #notes {
+.wrap {
   display: flex;
+  justify-content: center;
   flex-direction: column;
+  background-color:  #d1d1d1;
+  text-align:center;
+ }
+
+
+
+#message, #notes {
   align-items: center;
 }
 
 #message {
   font-size: 1.5rem;
+  background-color: white;
+}
+
+.scoreboard {
+  padding: 0.25em 0.25em;
+  display:flex;  
+  justify-content:space-between;
+  border: 0.4em ridge;
+  border-color:#e3e3e3;
+}
+
+.counter {
+  font-size: 24px;
+  padding: 0.25em 0.25em;
+  width: 1.5em;
+  height: 1.5em;
+  color: red; 
+  background: black;
+}
+
+.reset {
+  padding: 0.15em 0.15em;
+  font-size: 24px; 
+  cursor: pointer;
+  line-height: 1em;
+  border-width: 0.2em;
+  background-color: #d1d1d1;
+  border-color: lighten(#d1d1d1, 20%) darken(#d1d1d1, 20%) darken(#d1d1d1, 20%) lighten(#d1d1d1, 20%);
 }
 
 .board {
+  background-color:  #d1d1d1;
+  padding: 0.25em 0.25em;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .board div {
-  color: green;
-  font-size: 2rem;
-  width: 75px;
-  height: 75px;
-  border: 1px #ccc dotted;
-  border-radius: 10%;
-  background-color: white;
-  margin: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color:black;
+  width: 3em;
+  height: 3em;
+  margin: 0.25em 0.25em;
+  padding: 0.25em 0.25em;
+
+
+  
 }
 
 .board div:hover {
-  background-color: white;
+  background-color:#808080;
 }
+
+
 
 div.mine, div.mine:hover {
   background: no-repeat center/60% url("images/bomb.svg") crimson;
 }
 
 div.hidden {
-  background: #eee;
+  cursor: pointer;
+  border-width: 0.2em;
+  background:#d1d1d1;
+  border-bottom: 2px solid #7B7B7B;
+  border-left: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #7B7B7B;
 }
 
 div.hidden:hover {
-  background: #ccc;
+  background: #e3e3e3;
 }
 
 div.marked, div.marked:hover {
