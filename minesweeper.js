@@ -5,8 +5,7 @@ document.addEventListener('DOMContentLoaded', startGame)
 //createResetListener()
 
 // Define your `board` object here!
-var board = {
-}
+var board = {}
 // Define the cells property as an array
 board.cells = []
 
@@ -31,30 +30,24 @@ for (let i = 0; i < size; i++) {
     board.cells.push(cell)
   }
 }
-//Add mines using random numbers between 0 and size*size
-function getRandom(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
 
 var randomNumberMines = getRandom(1, size * size)
 
-// Assign the number of mines to the class counter
-
+// Assign the random number of mines to the class counter
 for (let i = 0; i < randomNumberMines; i++) {
   var randomPlace = getRandom(0, size * size)
   board.cells[randomPlace].isMine = true
 }
 
+
+
 function startGame() {
 
   for (let i = 0; i < size; i++) {
-
     var cell = board.cells[i] //Joseph
-    cell.surroundingMines=countSurroundingMines(cell) //Joseph
-
-
+    cell.surroundingMines = countSurroundingMines(cell) //Joseph
   }
-  
+
   // Initialise the timer
   var timerId;
   clearInterval(timerId);
@@ -64,15 +57,11 @@ function startGame() {
   setCounter();
 
   lib.initBoard()
-
-
 }
 
 //Create event listeners for clicks to check for win
-document.onclick =checkForWin
+document.onclick = checkForWin
 window.oncontextmenu = checkForWin
-
-
 
 // Define this function to look for a win condition:
 //
@@ -84,14 +73,15 @@ function checkForWin() {
   // detected that they've won, that is!)
   var totalMarked = 0
   for (let i = 0; i < size * size; i++) {
-    if (board.cells[i].isMine && board.cells[i].isMarked) { 
+    if (board.cells[i].isMine && board.cells[i].isMarked) {
       //console.log("1 marked mine")
-      totalMarked++ 
+      totalMarked++
     }
   }
-  if (totalMarked==randomNumberMines) { 
-    
-    return lib.displayMessage('You win!')}
+  if (totalMarked == randomNumberMines) {
+
+    return lib.displayMessage('You win!')
+  }
 }
 
 // Define this function to count the number of mines around the cell
@@ -103,37 +93,38 @@ function checkForWin() {
 // It will return cell objects in an array. You should loop through 
 // them, counting the number of times `cell.isMine` is true.
 function countSurroundingMines(cell) {
-  var count=0
+  var count = 0
   var surrounding = lib.getSurroundingCells(cell.row, cell.col)
   for (let i = 0; i < surrounding.length; i++) {
-      var cell=surrounding[i]
-      if (cell.isMine) {
-        count++
-      }
+    var cell = surrounding[i]
+    if (cell.isMine) {
+      count++
+    }
   }
   return count
 }
 
+//Generate an object with a random number between 01 and size*size
+function getRandom(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
 // Add a function to set the timer on the timer id
-function setTimer () {
+function setTimer() {
   var elapsedTime = 0
-  timerId = setInterval(function(){
+  timerId = setInterval(function () {
     elapsedTime += 1;
     document.getElementById('timer').innerText = elapsedTime.toString().padStart(2, '0');
   }, 1000);
 }
 
 // Add a function to set the mine counter to the mine randomNumberMines
-function setCounter () {
-    document.getElementById('mineCounter').innerText=randomNumberMines;
+function setCounter() {
+  document.getElementById('mineCounter').innerText = randomNumberMines;
 }
 
+// Create an event listener that resets game on click
+var resetButton = document.getElementsByClassName('reset')
+// object.addEventListener("click", myScript);
+resetButton.onclick = lib.initBoard
 
-
-
-// Add a function to reset 
-function createResetListener() { 
-  document.getElementsByClassName('reset').addEventListener('click', function() {
-    lib.initBoard()
-  });
-}

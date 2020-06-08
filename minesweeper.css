@@ -59,12 +59,12 @@ body {
 
 .board {
   background-color:  #d1d1d1;
+  color:black;
   padding: 0.25em 0.25em;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
 }
 
 .board div {
@@ -73,9 +73,6 @@ body {
   height: 3em;
   margin: 0.25em 0.25em;
   padding: 0.25em 0.25em;
-
-
-  
 }
 
 .board div:hover {
@@ -104,4 +101,25 @@ div.hidden:hover {
 
 div.marked, div.marked:hover {
   background: no-repeat center/60% url("images/mark.svg") deepskyblue;
+}
+
+/* media query to change the page layout for mobile portrait (320px) */
+@media (min-width: 320px)  and (orientation: portrait) {
+  html {
+     font-size:0.1em;
+  }
+}
+
+/* media query to change the page layout for tablet portrait (768px) */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  html {
+     font-size:0.1em;
+  }
+}
+/*media queries to change the page layout for desktop/laptop (1200px+) */
+
+@media (min-width:1280px) {
+  html {
+     font-size:0.20em;
+  }
 }
